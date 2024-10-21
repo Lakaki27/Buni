@@ -1,9 +1,10 @@
 RewriteEngine On
 
-# Prevent rewriting for existing files and directories
+ErrorDocument 403,404 /index.php
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Rewrite everything else to index.php
+RewriteCond %{REQUEST_URI} !(.*controllers.*) [NC]
+RewriteCond %{REQUEST_URI} !\.(js|css)$ [NC]
 RewriteRule ^(.*)$ /index.php [QSA,L]

@@ -3,5 +3,14 @@
         "psr-4": {
             "Buni\\": "class/"
         }
+    },
+    "require": {
+        "nyholm/psr7": "^1.8",
+        "symfony/http-client": "^7.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     }
 }

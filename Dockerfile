@@ -13,6 +13,9 @@ RUN a2enmod rewrite
 # Copy .htaccess file
 COPY ./.htaccess /var/www/html/.htaccess
 
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql
+
 # Expose ports
 EXPOSE 80 443
 
