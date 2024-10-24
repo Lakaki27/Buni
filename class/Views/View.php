@@ -19,7 +19,7 @@ class View
     {
         $urlToMatch = explode('?', $this->url)[0];
         $stmt = $this->appDb->select(
-            "SELECT * FROM views WHERE request_path = :path",
+            "SELECT * FROM views WHERE request_path LIKE :path",
             ["path" => $urlToMatch]
         );
 

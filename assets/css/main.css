@@ -1,5 +1,5 @@
 :root {
-    --primary: #c800cf;
+    --primary: rgb(202, 0, 209);
     /* Couleur du site */
     --secondary: #b6ccfe;
     /* Couleur plus fonce du site*/
@@ -61,6 +61,7 @@ html {
 
 body {
     min-height: 100vh !important;
+    /* background-color: var(--background); */
     background-color: var(--background);
 }
 
@@ -161,4 +162,33 @@ body {
     .container {
         width: 100%;
     }
+}
+
+.offcanvas {
+    background-color: var(--background);
+}
+
+.btn {
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.btn:hover {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.containerMenu {
+    background-color: var(--tertiary);
+    border-color: var(--tertiary);
+
+}
+
+.backgroundContainerMenu {
+    background-color: var(--secondary);
+    border-color: var(--secondary);
+}
+
+.headCard{
+    background-color: #e3e3e3;
 }

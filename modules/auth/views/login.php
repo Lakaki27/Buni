@@ -15,11 +15,11 @@
                         <input type="email" name="loginMail" id="loginMail" class="form-control">
                     </div>
                     <div class="col-12">
-                        <label for="loginPassword" class="form-label">Mot de passe :</label>
+                        <label for="loginPassword" class="form-label">Password :</label>
                         <input type="password" name="loginPassword" id="loginPassword" class="form-control">
                     </div>
                     <div class="col-12 w-100 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">Se connecter</button>
+                        <button type="submit" class="btn btn-primary">Login</button>
                     </div>
                 </form>
             </div>
@@ -29,33 +29,38 @@
                 </div>
                 <form id="registerForm" class="row g-3 align-self-center">
                     <div class="col-12">
-                        <label for="registerUsername" class="form-label">Nom d'utilisateur :</label>
+                        <label for="registerUsername" class="form-label">Username :</label>
                         <input type="text" name="registerUsername" id="registerUsername" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="registerLastName" class="form-label">Nom :</label>
+                        <label for="registerLastName" class="form-label">Last Name :</label>
                         <input type="text" name="registerLastName" id="registerLastName" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <label for="registerFirstName" class="form-label">Prénom :</label>
+                        <label for="registerFirstName" class="form-label">First Name :</label>
                         <input type="text" name="registerFirstName" id="registerFirstName" class="form-control">
                     </div>
-                    <div class="col-12">
-                        <label for="registerEmail" class="form-label">E-mail du Trello associé :</label>
+
+                    <div class="col-md-6">
+                        <label for="registerEmail" class="form-label">Trello account e-mail :</label>
                         <input type="email" name="registerEmail" id="registerMail" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="registerEmail" class="form-label">Trello account ID :</label>
+                        <input type="text" name="registerTrelloId" id="registerTrelloId" class="form-control">
                     </div>
 
                     <div class="col-12">
-                        <label for="registerPassword" class="form-label">Mot de passe :</label>
+                        <label for="registerPassword" class="form-label">Password :</label>
                         <input type="password" name="registerPassword" id="registerPassword" class="form-control">
                     </div>
 
                     <div class="col-12">
-                        <label for="registerPasswordConfirm" class="form-label">Confirmez votre mot de passe :</label>
+                        <label for="registerPasswordConfirm" class="form-label">Confirm password :</label>
                         <input type="password" name="registerPasswordConfirm" id="registerPasswordConfirm" class="form-control">
                     </div>
                     <div class="col-12 w-100 d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary">S'inscrire</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </form>
             </div>

@@ -4,10 +4,14 @@ services:
     container_name: php-container
     volumes:
       - ./:/var/www/html
+      - ./custom-php.ini:/usr/local/etc/php/conf.d/custom-php.ini
+      - ./msmtprc:/etc/msmtprc
     ports:
       - "8080:80"
     depends_on:
       - mysql
+    environment:
+      PHP_INI_SCAN_DIR: /usr/local/etc/php/conf.d  
 
   mysql:
     image: mysql:8.0
@@ -32,6 +36,11 @@ services:
       - "8081:80"
     depends_on:
       - mysql
+
+  mailcatcher:
+    image: sj26/mailcatcher
+    ports:
+      - "1080:1080"  
 
 volumes:
   mysql_data:

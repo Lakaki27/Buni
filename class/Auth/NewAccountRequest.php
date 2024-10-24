@@ -12,6 +12,8 @@ class NewAccountRequest
     private string $lastName = "";
     private string $mail = "";
     private string $password = "";
+    private string $trelloId = "";
+
 
     private UserAvailabilityVerificator $uav;
     private Connection $appDb;
@@ -19,12 +21,14 @@ class NewAccountRequest
     public function __construct(array $userData)
     {
         $this->mail = trim($userData['mail']);
+        $this->trelloId = trim($userData['trelloId']);
         $this->password = trim($userData['password']);
-        $this->firstName = trim($userData['username']);
+        $this->firstName = trim($userData['firstName']);
         $this->lastName = trim($userData['lastName']);
-        $this->username = trim($userData['firstName']);
+        $this->username = trim($userData['username']);
         $this->uav = UserAvailabilityVerificator::getInstance();
         $this->appDb = Connection::getInstance();
+        $this->trelloId = trim($userData['trelloId']);
     }
 
     public function verifyRegisterValidity(): array
@@ -67,7 +71,8 @@ class NewAccountRequest
             "username" => $this->username,
             "password" => password_hash($this->password, PASSWORD_BCRYPT),
             "first_name" => $this->firstName,
-            "last_name" => $this->lastName
+            "last_name" => $this->lastName,
+            "id_trello" => $this->trelloId,
         ];
     }
 

@@ -35,7 +35,7 @@ class AuthRequest
             }
 
             $stmt = $this->appDb->select(
-                "SELECT id, username, first_name, last_name, mail, active, password FROM users WHERE mail =   :email",
+                "SELECT id, username, first_name, last_name, mail, active, id_trello, password FROM users WHERE mail =   :email",
                 ["email" => $this->mail]
             );
 
@@ -85,7 +85,8 @@ class AuthRequest
             'username' => $foundUser["username"],
             'firstName' => $foundUser["first_name"],
             'lastName' => $foundUser["last_name"],
-            'dbId' => $foundUser["id"]
+            'dbId' => $foundUser["id"],
+            'trelloId' => $foundUser["id_trello"]
         ];
     }
 

@@ -9,6 +9,7 @@ class User
     private $firstName;
     private $lastName;
     private $mail;
+    private $trelloId;
 
     private ?Connection $appDb = null;
 
@@ -22,6 +23,7 @@ class User
         $this->firstName = isset($userData["firstName"]) ? $userData['firstName'] : $userData['first_name'];
         $this->lastName = isset($userData["lastName"]) ? $userData['lastName'] : $userData['last_name'];
         $this->dbId = isset($userData["dbId"]) ? $userData['dbId'] : $userData['id'];
+        $this->trelloId = isset($userData["trelloId"]) ? $userData['trelloId'] : $userData['id_trello'];
         $this->appDb = Connection::getInstance();
     }
 
@@ -69,17 +71,35 @@ class User
 
     public function getTeams(): array
     {
-        $userTeams = $this->appDb->select("SELECT teams.name, teams.id, teams.created_at
+        $userTeams = $this->appDb->select("SELECT teams.name, teams.id, teams.created_at, users_teams.status
         FROM users_teams
         JOIN teams on users_teams.id_teams = teams.id
         WHERE users_teams.id_users = :id", ["id" => $this->dbId]);
 
-        $teams = [];
+        $teams = [
+            "ongoing" =>  [],
+            "accepted" => []
+        ];
 
         foreach ($userTeams as $team) {
-            $teams[] = new Team($team["id"]);
+            $teamObject = new Team($team["id"]);
+            if ($team['status'] === "ongoing") {
+                $teams['ongoing'][] = $teamObject;
+            } else if ($team['status'] === "accepted") {
+                $teams['accepted'][] = $teamObject;
+            }
         }
 
         return $teams;
+    }
+
+    public function getName(): string
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
+
+    public function getTrelloId()
+    {
+        return $this->trelloId;
     }
 }

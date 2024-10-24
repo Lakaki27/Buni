@@ -56,6 +56,7 @@ async function register() {
         lastName: document.getElementById("registerLastName").value,
         firstName: document.getElementById("registerFirstName").value,
         mail: document.getElementById("registerMail").value,
+        trelloId: document.getElementById("registerTrelloId").value,
         password: document.getElementById("registerPassword").value,
         confirmPassword: document.getElementById("registerPasswordConfirm").value,
     };

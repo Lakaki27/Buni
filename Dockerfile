@@ -7,17 +7,18 @@ RUN apt-get update && apt-get install -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 
-# Enable mod_rewrite
+# RUN apt-get install -y libsqlite3-dev ruby-dev msmtp msmtp-mta
+
 RUN a2enmod rewrite
 
-# Copy .htaccess file
 COPY ./.htaccess /var/www/html/.htaccess
 
-# Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Expose ports
+RUN chown -R www-data:www-data /var/www/html
+
+ENV UMASK 002
+
 EXPOSE 80 443
 
-# Command to run Apache
 CMD ["apache2-foreground"]

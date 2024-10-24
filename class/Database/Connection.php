@@ -4,7 +4,6 @@ namespace Buni\Database;
 
 use PDO;
 use PDOException;
-use Symfony\Contracts\HttpClient\Exception\ExceptionInterface;
 
 class Connection
 {
@@ -46,6 +45,17 @@ class Connection
         return self::$_instance;
     }
 
+    public function queryWithLastInsertIDs($sql, $params = [])
+    {
+        try {
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($params);
+            return ['stmt' => $stmt, 'ids' => $this->pdo->lastInsertId()];
+        } catch (PDOException $th) {
+            throw $th;
+        }
+    }
+
     public function query($sql, $params = [])
     {
         try {
@@ -72,7 +82,8 @@ class Connection
         $keys = implode(", ", array_keys($data));
         $values = ":" . implode(", :", array_keys($data));
         $sql = "INSERT INTO $table ($keys) VALUES ($values)";
-        $this->query($sql, $data);
+        $ids = $this->queryWithLastInsertIDs($sql, $data);
+        return $ids;
     }
 
     public function update($table, $data, $where)
@@ -86,9 +97,9 @@ class Connection
         $this->query($sql, $data);
     }
 
-    public function delete($table, $where)
+    public function delete($table, $where, $params)
     {
         $sql = "DELETE FROM $table WHERE $where";
-        $this->query($sql);
+        $this->query($sql, $params);
     }
 }
