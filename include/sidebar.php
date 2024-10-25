@@ -14,5 +14,5 @@
         </div>  
     </div>
     <!-- <img class="" src="/assets/img/buni-logo.png" alt="Buni" style="height: 40px; width: 40px;"> -->
-    <a href="/logout" class="btn bg-danger p-2 m-4 text-white offcanvas-end mx-auto" id="disconnect" style="width: 200px;">Logout</a>
+    <a href="/logout" class="btn btn-primary p-2 m-4 text-white offcanvas-end mx-auto" id="disconnect" style="width: 200px;">Logout</a>
 </div>

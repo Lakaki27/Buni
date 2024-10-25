@@ -35,17 +35,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $lastTeamScrum = $team->getLastScrum();
 
-        // if ($lastTeamScrum !== []) {
-        //     if (
-        //         !(floor(
-        //             (time() - strtotime($lastTeamScrum['created_at'])) / 86400
-        //         ) >= 1)
-        //     ) {
-        //         header("Content-Type: application/json; charset=utf-8");
-        //         echo json_encode(["error" => "There has already been a daily scrum in the last 24hours."]);
-        //         return;
-        //     }
-        // }
+        if ($lastTeamScrum !== []) {
+            if (
+                !(floor(
+                    (time() - strtotime($lastTeamScrum['created_at'])) / 86400
+                ) >= 1)
+            ) {
+                header("Content-Type: application/json; charset=utf-8");
+                echo json_encode(["error" => "There has already been a daily scrum in the last 24hours."]);
+                return;
+            }
+        }
 
         $dailyScrum = new DailyScrum(["team" => $team, "scrumMaster" => $user]);
 
